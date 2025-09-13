@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Heart, Calendar, BookOpen, Users, BarChart3, Shield } from "lucide-react";
+import { Menu, Heart, Calendar, BookOpen, Users, BarChart3, Shield,UserRoundPen } from "lucide-react";
 
 const Navigation = () => {
   const location = useLocation();
@@ -14,6 +14,7 @@ const Navigation = () => {
     { href: "/resources", label: "Resources", icon: BookOpen },
     { href: "/support", label: "Peer Support", icon: Users },
     // { href: "/admin", label: "Admin", icon: BarChart3 },
+    { href:"/login",label:"Login",icon:UserRoundPen}
   ];
 
   const isActive = (path: string) => location.pathname === path;

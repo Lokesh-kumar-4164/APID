@@ -9,6 +9,8 @@ import Booking from "./pages/Booking";
 import Resources from "./pages/Resources";
 import Support from "./pages/Support";
 import Admin from "./pages/Admin";
+import Login from "./pages/Login.tsx";
+import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/booking" element={<Booking />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/support" element={<Support />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             {/* <Route path="/admin" element={<Admin />} /> */}
             <Route path="*" element={<NotFound />} />
           </Routes>
