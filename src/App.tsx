@@ -24,7 +24,7 @@ const App = () => (
         <div className="min-h-screen bg-background">
           <Navigation />
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<Index /> } />
             <Route path="/booking" element={<Booking />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/support" element={<Support />} />
