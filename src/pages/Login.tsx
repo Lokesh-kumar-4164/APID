@@ -1,14 +1,15 @@
+import { useAuthStore } from '@/store/AuthStore';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// --- SVG Icons ---
-// A simple User icon for the login page
+import { useNavigate } from 'react-router-dom';
+
 const UserCircleIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24" fill="currentColor">
         <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
     </svg>
 );
 
-// Eye icon to toggle password visibility
+
 const EyeIcon = ({ className }) => (
     <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
@@ -26,6 +27,18 @@ const EyeSlashIcon = ({ className }) => (
 
 export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
+    const {as,isLogin,setAs,setUser}  = useAuthStore();
+    const navigate = useNavigate();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData)
+        console.log(data);
+        //setUser();
+        setUser(data);
+        setAs("student");
+        navigate("/");
+    }
 
     return (
         // Main container with the background color scheme from your image
@@ -45,7 +58,7 @@ export default function Login() {
                 </div>
 
                 {/* Form */}
-                <form className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" >
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                             Email or Username
@@ -53,6 +66,7 @@ export default function Login() {
                         <input
                             type="email"
                             id="email"
+                            name='email'
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition duration-300"
                             placeholder="you@example.com"
                         />
@@ -65,6 +79,7 @@ export default function Login() {
                         <input
                             type={showPassword ? "text" : "password"}
                             id="password"
+                            name='password'
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition duration-300"
                             placeholder="••••••••"
                         />
@@ -94,11 +109,14 @@ export default function Login() {
                         </a>
                     </div>
                     
+                    
                     <button 
+                        type='submit'
                         className="w-full bg-cyan-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-300 transform hover:scale-105"
                     >
                         Log In
                     </button>
+                    
                     
                 </form>
 
@@ -111,6 +129,9 @@ export default function Login() {
                     </span>
                     </Link>
                 </p>
+                <Link to="/admin">
+                <p className='text-right underline hover:text-green-500 cursor-pointer'>Login as admin</p>
+                </Link>
             </div>
         </div>
     );
