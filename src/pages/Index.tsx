@@ -1,62 +1,79 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import Logo from "../assets/zoomed_logo.jpg";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Calendar, 
-  BookOpen, 
-  Users, 
-  BarChart3, 
-  Shield, 
+import {
+  Calendar,
+  BookOpen,
+  Users,
+  BarChart3,
+  Shield,
   Heart,
   Phone,
   Clock,
   Star,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 import heroImage from "@/assets/hero-wellness.jpg";
+import { useQuestionnaireStore } from "@/store/AuthStore";
 
-const Index = () => {
+type IndexProps = {
+  isLogin: boolean;
+}
+const Index:React.FC<IndexProps> = (props) => {
+  const {questionnaireDone,setQuestionnaireDone} = useQuestionnaireStore();
   const services = [
     {
       title: "Confidential Booking",
-      description: "Schedule appointments with on-campus counselors or access mental health helpline",
+      description:
+        "Schedule appointments with on-campus counselors or access mental health helpline",
       icon: Calendar,
       href: "/booking",
       color: "trust",
-      features: ["Private & Secure", "24/7 Helpline", "Licensed Counselors"]
+      features: ["Private & Secure", "24/7 Helpline", "Licensed Counselors"],
     },
     {
       title: "Resource Hub",
-      description: "Videos, audio guides, and wellness materials in multiple regional languages",
+      description:
+        "Videos, audio guides, and wellness materials in multiple regional languages",
       icon: BookOpen,
       href: "/resources",
       color: "wellness",
-      features: ["Multi-language", "Self-paced", "Expert Curated"]
+      features: ["Multi-language", "Self-paced", "Expert Curated"],
     },
     {
       title: "Peer Support",
-      description: "Connect with trained student volunteers in moderated support forums",
+      description:
+        "Connect with trained student volunteers in moderated support forums",
       icon: Users,
       href: "/support",
       color: "support",
-      features: ["Peer-to-peer", "Moderated", "Anonymous"]
+      features: ["Peer-to-peer", "Moderated", "Anonymous"],
     },
     {
       title: "Admin Dashboard",
-      description: "Anonymous analytics for authorities to recognize trends and plan interventions",
+      description:
+        "Anonymous analytics for authorities to recognize trends and plan interventions",
       icon: BarChart3,
       href: "/admin",
       color: "secondary",
-      features: ["Data Analytics", "Trend Analysis", "Privacy-first"]
-    }
+      features: ["Data Analytics", "Trend Analysis", "Privacy-first"],
+    },
   ];
 
   const stats = [
     { number: "1,847", label: "Students Supported", icon: Users },
     { number: "98%", label: "Satisfaction Rate", icon: Star },
     { number: "24/7", label: "Crisis Support", icon: Phone },
-    { number: "100%", label: "Confidential", icon: Shield }
+    { number: "100%", label: "Confidential", icon: Shield },
   ];
 
   return (
@@ -64,23 +81,25 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-secondary/20 to-accent/20">
         <div className="absolute inset-0 opacity-10">
-          <img 
-            src={heroImage} 
-            alt="Mental wellness illustration" 
+          <img
+            src={heroImage}
+            alt="Mental wellness illustration"
             className="w-full h-full object-cover"
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 py-20 lg:py-32">
           <div className="text-center">
             <div className="flex items-center justify-center mb-6">
-              <Shield className="h-12 w-12 text-primary mr-4" />
+              <img src={Logo} alt="APID Logo" className="h-12 w-20 mr-4" />
+              {/* <Shield className="h-12 w-12 text-primary mr-4" /> */}
               <h1 className="text-5xl lg:text-7xl font-bold text-foreground">
-               <span className="text-primary">APID</span>
+                <span className="text-primary">APID</span>
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8">
-              Comprehensive mental health support platform providing confidential counseling, 
-              peer support, and wellness resources for campus students
+              Comprehensive mental health support platform providing
+              confidential counseling, peer support, and wellness resources for
+              campus students
             </p>
             <div className="flex items-center justify-center mb-8 space-x-6">
               <Badge variant="secondary" className="px-4 py-2 text-sm">
@@ -96,6 +115,44 @@ const Index = () => {
                 Student-Centered
               </Badge>
             </div>
+            {/* {isLogin && <div>
+                <h2>You have not logged in</h2>
+                <h2>Please Login to attend Questionaire</h2>
+                <button>Login</button>
+            </div>} */}
+            
+            {props.isLogin? 
+            (questionnaireDone ? <></>:(
+              <div className="max-w-md mx-auto mb-6 p-6 bg-green-50 border border-green-200 rounded-xl shadow-sm text-center">
+                <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                  Take this short survey to get started
+                </h2>
+                <h2 className="text-gray-600 mb-4">
+                  Answer these questions to let us know about you current mental health status
+                </h2>
+                <Link to="/questionnaire">
+                <Button variant="trust" size="lg" className="px-8 py-3 text-lg">
+                  Questionnaire
+                </Button>
+                </Link>
+              </div>
+            )): (
+              <div className="max-w-md mx-auto mb-6 p-6 bg-green-50 border border-green-200 rounded-xl shadow-sm text-center">
+                <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                  You are not logged in
+                </h2>
+                <h2 className="text-gray-600 mb-4">
+                  Please login to attend the Questionnaire
+                </h2>
+                <Link to="/login">
+                <Button variant="trust" size="lg" className="px-8 py-3 text-lg">
+                  Login
+                </Button>
+                </Link>
+              </div>
+            )
+            }
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/booking">
                 <Button variant="trust" size="lg" className="px-8 py-3 text-lg">
@@ -104,7 +161,11 @@ const Index = () => {
                 </Button>
               </Link>
               <Link to="/resources">
-                <Button variant="wellness" size="lg" className="px-8 py-3 text-lg">
+                <Button
+                  variant="wellness"
+                  size="lg"
+                  className="px-8 py-3 text-lg"
+                >
                   Explore Resources
                 </Button>
               </Link>
@@ -126,7 +187,9 @@ const Index = () => {
                       <Icon className="h-8 w-8 text-primary" />
                     </div>
                   </div>
-                  <h3 className="text-3xl font-bold text-foreground mb-2">{stat.number}</h3>
+                  <h3 className="text-3xl font-bold text-foreground mb-2">
+                    {stat.number}
+                  </h3>
                   <p className="text-muted-foreground">{stat.label}</p>
                 </div>
               );
@@ -139,9 +202,12 @@ const Index = () => {
       <section className="py-20 bg-gradient-to-br from-background to-muted/30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Our Services</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4">
+              Our Services
+            </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Comprehensive mental health support designed specifically for campus life
+              Comprehensive mental health support designed specifically for
+              campus life
             </p>
           </div>
 
@@ -149,15 +215,22 @@ const Index = () => {
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20">
+                <Card
+                  key={index}
+                  className="group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20"
+                >
                   <CardHeader>
                     <div className="flex items-center space-x-4 mb-4">
                       <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
                         <Icon className="h-8 w-8 text-primary" />
                       </div>
                       <div>
-                        <CardTitle className="text-2xl">{service.title}</CardTitle>
-                        <CardDescription className="text-base">{service.description}</CardDescription>
+                        <CardTitle className="text-2xl">
+                          {service.title}
+                        </CardTitle>
+                        <CardDescription className="text-base">
+                          {service.description}
+                        </CardDescription>
                       </div>
                     </div>
                   </CardHeader>
@@ -165,14 +238,18 @@ const Index = () => {
                     <div className="space-y-4">
                       <div className="flex flex-wrap gap-2">
                         {service.features.map((feature, fIndex) => (
-                          <Badge key={fIndex} variant="outline" className="text-xs">
+                          <Badge
+                            key={fIndex}
+                            variant="outline"
+                            className="text-xs"
+                          >
                             {feature}
                           </Badge>
                         ))}
                       </div>
                       <Link to={service.href}>
-                        <Button 
-                          variant={service.color as any} 
+                        <Button
+                          variant={service.color as any}
                           className="w-full group-hover:shadow-md transition-all"
                         >
                           Access {service.title}
@@ -195,8 +272,8 @@ const Index = () => {
             You're Not Alone in This Journey
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Take the first step towards better mental health. Our platform provides safe, 
-            confidential support whenever you need it.
+            Take the first step towards better mental health. Our platform
+            provides safe, confidential support whenever you need it.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/booking">

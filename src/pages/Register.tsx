@@ -47,7 +47,7 @@ export default function App() {
                     <p className="text-gray-500 mt-2">Join us! It's quick and easy.</p>
                 </div>
 
-                {/* Form */}
+                
                 <form className="space-y-4">
                     <div>
                         <label htmlFor="fullname" className="block text-sm font-medium text-gray-700 mb-1">

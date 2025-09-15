@@ -2,9 +2,22 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Heart, Calendar, BookOpen, Users, BarChart3, Shield,UserRoundPen } from "lucide-react";
+import {
+  Menu,
+  Heart,
+  Calendar,
+  BookOpen,
+  Users,
+  BarChart3,
+  Shield,
+  UserRoundPen,
+  User
+} from "lucide-react";
 
-const Navigation = () => {
+type NavigationProps = {
+  isLogin: boolean;
+};
+const Navigation: React.FC<NavigationProps> = (props) => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,8 +27,12 @@ const Navigation = () => {
     { href: "/resources", label: "Resources", icon: BookOpen },
     { href: "/support", label: "Peer Support", icon: Users },
     // { href: "/admin", label: "Admin", icon: BarChart3 },
-    { href:"/login",label:"Login",icon:UserRoundPen}
   ];
+  if (!props.isLogin) {
+    navItems.push({ href: "/login", label: "Login", icon: UserRoundPen });
+  }else{
+    navItems.push({ href: "/profile", label: "Profile", icon: User });
+  }
 
   const isActive = (path: string) => location.pathname === path;
 
