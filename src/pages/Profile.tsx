@@ -34,7 +34,7 @@ const Profile = () => {
     // Mock user profile (replace with DB later)
     setProfile({
       id: "u123",
-      name: "Alice Johnson",
+      name: "Krithika",
       year: "2nd Year",
       department: "Computer Science",
       gender: "Female",

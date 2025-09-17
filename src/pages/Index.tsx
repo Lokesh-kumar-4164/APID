@@ -90,10 +90,11 @@ const Index:React.FC<IndexProps> = (props) => {
         <div className="relative max-w-7xl mx-auto px-4 py-20 lg:py-32">
           <div className="text-center">
             <div className="flex items-center justify-center mb-6">
-              <img src={Logo} alt="APID Logo" className="h-12 w-20 mr-4" />
+              {/* <img src={Logo} alt="APID Logo" className="h-12 w-20 mr-4" /> */}
               {/* <Shield className="h-12 w-12 text-primary mr-4" /> */}
               <h1 className="text-5xl lg:text-7xl font-bold text-foreground">
                 <span className="text-primary">APID</span>
+                <p className="text-[1.2rem] mt-2 opacity-70">-- Assistance Platform for Interactive Dialogue --</p>
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-8">

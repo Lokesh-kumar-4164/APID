@@ -15,7 +15,7 @@ const Students = () => {
   useEffect(() => {
     // mock data
     setStudents([
-      { id: "1", name: "Alice Johnson", year: "2nd", department: "CSE", riskLevel: "low" },
+      { id: "1", name: "Krithika", year: "2nd", department: "CSE", riskLevel: "low" },
       { id: "2", name: "Rahul Mehta", year: "3rd", department: "Mechanical", riskLevel: "high" },
       { id: "3", name: "Fatima Khan", year: "1st", department: "Psychology", riskLevel: "moderate" },
     ]);

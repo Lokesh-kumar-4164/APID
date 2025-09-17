@@ -42,8 +42,9 @@ const Navigation: React.FC<NavigationProps> = (props) => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <Shield className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold text-foreground">APID</span>
+            <img src="src\assets\logo.jpg" className="h-12 w-12" alt="" />
+              {/* <Shield className="h-8 w-8 text-primary" />
+              <span className="text-xl font-bold text-foreground">APID</span> */}
             </Link>
           </div>
 

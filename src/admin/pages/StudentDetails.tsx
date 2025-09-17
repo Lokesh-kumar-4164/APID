@@ -24,7 +24,7 @@ const StudentDetails = () => {
 
   const profile = {
       id: "u123",
-      name: "Alice Johnson",
+      name: "Krithika",
       year: "2nd Year",
       department: "Computer Science",
       gender: "Female",
