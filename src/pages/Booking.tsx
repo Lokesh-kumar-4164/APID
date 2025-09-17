@@ -200,6 +200,19 @@ const Booking = () => {
                       </SelectContent>
                     </Select>
                   </div>
+                  <div>
+                    <Label htmlFor="time">Preferred Time</Label>
+                    <Select value={formData.time} onValueChange={(value) => handleInputChange("time", value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Mode of Meet" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="online"> Online</SelectItem>
+                        <SelectItem value="offline">Offline </SelectItem>
+                        
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
 
                 <div className="bg-muted/50 p-4 rounded-lg">

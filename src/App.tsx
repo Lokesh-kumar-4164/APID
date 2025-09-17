@@ -15,9 +15,7 @@ import Questionnaire from "./components/Questionaire.tsx";
 import NotFound from "./pages/NotFound";
 import { useAuthStore } from "./store/AuthStore.ts";
 import AdminApp from "./admin/AdminApp.tsx";
-import Dashboard from "./admin/pages/Dashboard.tsx";
-import Reports from "./admin/pages/Reports.tsx";
-import Students from "./admin/pages/Students.tsx";
+import ChatPage from "./pages/AI/ChatPage.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import Profile from "./pages/Profile.tsx";
 
@@ -42,6 +40,7 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/chatpage" element={<ChatPage />} />
               {/* <Route path="/admin" element={<Admin />} /> */}
               <Route path="/questionnaire" element={<Questionnaire />} />
               <Route path="/admin/*" element={<AdminApp />} />

@@ -160,13 +160,13 @@ const Index:React.FC<IndexProps> = (props) => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Link to="/resources">
+              <Link to="/chatpage">
                 <Button
                   variant="wellness"
                   size="lg"
                   className="px-8 py-3 text-lg"
                 >
-                  Explore Resources
+                  Chat with AI
                 </Button>
               </Link>
             </div>
